@@ -1,0 +1,15 @@
+@startuml
+Client -> Server: Запрос списка заказов
+Server -> Cache: Проверка наличия данных в кеше
+Cache -> Server: Данных нет в кеше
+Server -> Database: Запрос в базу данных
+Database -> Server: Данные о заказах
+Server -> Cache: Кеширование данных
+Server -> Client: Отправка данных клиенту
+
+Client -> Server: Изменение статуса заказа
+Server -> Database: Обновление статуса заказа
+Database -> Server: Подтверждение обновления
+Server -> Cache: Инвалидация кеша
+Server -> Client: Подтверждение изменения статуса заказа
+@enduml
